@@ -14,19 +14,19 @@ useEffect(()=>{
     async function addProducts(url){
       const res = await fetch(url)
       const json = await res.json()
-      console.log(json)
+      setProducts(json)
     }
 
     addProducts(url)
-    
+  
 }, [])
 
 
   return (
     <div className="App">
-      <ul>
+      <ul className="allProducts">
         {products.map(
-          (product)=>(<li key={product.id}>{product.name}</li>)
+          (product)=>(<li key={product.id}>{product.name}<h2 className="prodInformations">Informações</h2></li>)
         )}          
 
       </ul>
