@@ -1,29 +1,29 @@
 {
-    "products": [
-      {
-        "id": 0,
-        "name": "Biscoito de Chocolate sem Recheio",
-        "price": "2.20"
-      },
-      {
-        "id": 1,
-        "name": "Chiclete de Hortelã",
-        "price": "1.20"
-      },
-      {
-        "id": 2,
-        "name": "Barra de Chocolate",
-        "price": "6.00"
-      },
-      {
-        "id": 3,
-        "name": "Biscoito Recheado com Creme",
-        "price": "3.00"
-      },
-      {
-        "name": "Sorvete de Pistache",
-        "price": "12.00",
-        "id": 4
-      }
-    ]
-  }
+  "products": [
+    {
+      "id": 0,
+      "name": "Biscoito de Chocolate sem Recheio",
+      "price": "2.20"
+    },
+    {
+      "id": 1,
+      "name": "Chiclete de Hortelã",
+      "price": "1.20"
+    },
+    {
+      "id": 2,
+      "name": "Barra de Chocolate",
+      "price": "6.00"
+    },
+    {
+      "id": 3,
+      "name": "Biscoito Recheado com Creme",
+      "price": "3.00"
+    },
+    {
+      "name": "Sorvete de Pistache",
+      "price": "12.00",
+      "id": 4
+    }
+  ]
+}
