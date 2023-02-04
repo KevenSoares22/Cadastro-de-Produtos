@@ -57,4 +57,15 @@
 
 
 }
+.prodct{
+    position: relative;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+label{
+    display: block;
+    
 
+
+}
