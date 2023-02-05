@@ -8,16 +8,20 @@ function App() {
 const url = "http://localhost:3000/products";
 const [products, setProducts] = useState([]);
 const [name, setName] = useState("")
+const [price, setPrice] = useState("")
+
+
+
 
 //Recebe o objeto json e converte para implementação no codigo
 useEffect(()=>{
-    async function addProducts(url){
+    async function addProducts(){
       const res = await fetch(url);
-      const json = await res.json();
-      setProducts(json);
+      const data = await res.json();
+      setProducts(data);
     }
 
-    addProducts(url);
+    addProducts();
   
 }, [])
 
@@ -28,12 +32,11 @@ const handleSubmit = async (e) =>{
     e.preventDefault();
     const product = {
         name,
-
-
-
+        price,
+      
     }
     console.log(product)
-    const res = await fetch (url, {
+    const res = await fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -42,6 +45,17 @@ const handleSubmit = async (e) =>{
         body: JSON.stringify(product)
 
     })
+
+
+    //Altera a string json para objeto
+    const addedProduct = await res.json()
+
+   console.log(addedProduct)
+    setProducts((prevProducts)=>[...prevProducts, addedProduct])
+    setName("")
+    setPrice("")
+
+
 }
 
   return (
@@ -50,15 +64,17 @@ const handleSubmit = async (e) =>{
       <div className="prodct list">
           <ul className="allProducts">
             {products.map(
-              (product)=>(<li key={product.id}>{product.name}<h2 className="prodInformations">Informações</h2></li>)
+              (product)=>(<li key={product.id}>{product.name} <p>R${product.price}</p><h2 className="prodInformations" onClick={(e)=>{console.log(e)}}>Informações</h2></li>)
             )}          
           </ul>
         </div>
       <div className="prodct add">
         
         <form onSubmit={handleSubmit}>
-        <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}} placeholder="Produto"/>
-        <button>Adicionar</button>
+        <input type="text" value={name} name="value" onChange={(e)=>{setName(e.target.value)}} placeholder="Produto"/>
+        <input type="number" value={price} name="price" onChange={(e)=>{setPrice(e.target.value)}} placeholder="Preço"/>
+
+        <input type="submit" value="Adicionar"/>
 
         </form>
 

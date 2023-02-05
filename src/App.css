@@ -11,7 +11,7 @@
 
 .allProducts li{
     position: relative;
-    
+    display: inline-block;
     color:rgb(90, 90, 90);
     background-color: rgb(240, 239, 239);
 

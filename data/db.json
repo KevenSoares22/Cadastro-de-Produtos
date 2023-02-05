@@ -21,9 +21,9 @@
       "price": "3.00"
     },
     {
+      "id": 4,
       "name": "Sorvete de Pistache",
-      "price": "12.00",
-      "id": 4
+      "price": "12.00"
     }
   ]
 }
