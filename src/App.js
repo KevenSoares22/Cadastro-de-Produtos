@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { useFetch } from './hooks/useFetch'
 import './App.css';
 
 function App() {
@@ -9,21 +9,9 @@ const url = "http://localhost:3000/products";
 const [products, setProducts] = useState([]);
 const [name, setName] = useState("")
 const [price, setPrice] = useState("")
+const { data: items } = useFetch(url)
 
 
-
-
-//Recebe o objeto json e converte para implementação no codigo
-useEffect(()=>{
-    async function addProducts(){
-      const res = await fetch(url);
-      const data = await res.json();
-      setProducts(data);
-    }
-
-    addProducts();
-  
-}, [])
 
 
 
@@ -63,9 +51,14 @@ const handleSubmit = async (e) =>{
 
       <div className="prodct list">
           <ul className="allProducts">
-            {products.map(
-              (product)=>(<li key={product.id}>{product.name} <p>R${product.price}</p><h2 className="prodInformations" onClick={(e)=>{console.log(e)}}>Informações</h2></li>)
-            )}          
+            {items && items.map(
+              (product)=>(<li key={product.id}>{product.name}<div>
+                              <p>R${product.price}</p>
+              <h2 className="prodInformations" onClick={(e)=>{console.log(e)}}>Informações</h2>
+           
+                
+                </div> </li>)
+ )}          
           </ul>
         </div>
       <div className="prodct add">
