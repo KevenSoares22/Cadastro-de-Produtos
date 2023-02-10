@@ -10,18 +10,22 @@ export const useFetch = (url) =>{
     const [callFetch, setCallFetch] = useState(false)
 
     const httpConfig = (data, method) =>{
-        if (method==='POST') {
+        if (method==="POST") {
+
+
+
+            console.log("chegou no POST")
             setConfig({
                 method,
                 headers: { 'Content-Type':'application/json' },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+             })
+
+
+
+            setMethods(method)
+
         }
-
-    
-
-            )
-        }
-
 
 
     }
@@ -50,18 +54,26 @@ export const useFetch = (url) =>{
     useEffect(()=>{
 
         const httpRequest = async () =>{
-        if (method==='POST') {
+
+
+
+            console.log(method)
+        if (method === "POST") {
         const fetchOptions = [url, config]
         const res = await fetch(...fetchOptions)
         const json = await res.json()
         setCallFetch(json)
-            
+
+
+            console.log("Chegou no httpRequest")
+
+
         }
 
 
         }
         httpRequest()
-    }, config)
+    }, [config, method, url] )
 
 
     return { data, httpConfig }

@@ -9,7 +9,7 @@ const url = "http://localhost:3000/products";
 const [products, setProducts] = useState([]);
 const [name, setName] = useState("")
 const [price, setPrice] = useState("")
-const { data: items } = useFetch(url)
+const { data: items, httpConfig } = useFetch(url)
 
 
 
@@ -24,22 +24,10 @@ const handleSubmit = async (e) =>{
       
     }
     console.log(product)
-    const res = await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-          
-        },
-        body: JSON.stringify(product)
-
-    })
+    console.log("Chegou aqui handle")
 
 
-    //Altera a string json para objeto
-    const addedProduct = await res.json()
-
-   console.log(addedProduct)
-    setProducts((prevProducts)=>[...prevProducts, addedProduct])
+    httpConfig(product, "POST")
     setName("")
     setPrice("")
 
