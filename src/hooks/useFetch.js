@@ -8,13 +8,13 @@ export const useFetch = (url) =>{
     const [config, setConfig] = useState(null)
     const [method, setMethods] = useState(null)
     const [callFetch, setCallFetch] = useState(false)
-
+    const [loading, setLoading] = useState(false)
     const httpConfig = (data, method) =>{
         if (method==="POST") {
 
 
 
-            console.log("chegou no POST")
+            
             setConfig({
                 method,
                 headers: { 'Content-Type':'application/json' },
@@ -36,11 +36,11 @@ export const useFetch = (url) =>{
 
 
         const fetchData = async () =>{
-
+        setLoading(true)
         const res = await fetch(url)
         const json = await res.json()
         setData(json)
-
+        setLoading(false)
 
         }
 
@@ -65,7 +65,6 @@ export const useFetch = (url) =>{
         setCallFetch(json)
 
 
-            console.log("Chegou no httpRequest")
 
 
         }
@@ -76,5 +75,5 @@ export const useFetch = (url) =>{
     }, [config, method, url] )
 
 
-    return { data, httpConfig }
+    return { data, httpConfig, loading }
 }
