@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 
 //Hooks Locais
-import { useFetch } from '../hooks/useFetch';
+import { useFetch } from '../../hooks/useFetch';
 
 
 
@@ -11,7 +11,7 @@ import { useFetch } from '../hooks/useFetch';
 import { Link } from 'react-router-dom'
 
 
-
+import './styles.css'
 
 
 
@@ -49,7 +49,17 @@ const handleSubmit = async (e) =>{
     
     
     
-    
+ <div className="prodct add">
+
+<form onSubmit={handleSubmit}>
+<input type="text" value={name} name="value" onChange={(e)=>{setName(e.target.value)}} placeholder="Produto"/>
+<input type="number" value={price} name="price" onChange={(e)=>{setPrice(e.target.value)}} placeholder="Preço"/>
+{loading && <input type="submit" value="Aguarde" disabled="disabled"/>}
+{!loading && <input type="submit" value="Adicionar"/>}
+
+</form>
+
+</div>   
 
 
 
@@ -60,7 +70,11 @@ const handleSubmit = async (e) =>{
 {loading && <p>Carregando, por favor aguarde</p>}
 {!loading &&    <ul className="allProducts">
     {items && items.map(
-      (product)=>(<li key={product.id}>{product.name}<div>
+      (product)=>(<li key={product.id}>  {product.name}
+
+
+
+      <div>
                       <p>R${product.price}</p>
         <Link to={`/product/${product.id}`}>Informações</Link>
    
@@ -72,17 +86,7 @@ const handleSubmit = async (e) =>{
 
 
 </div>
-<div className="prodct add">
 
-<form onSubmit={handleSubmit}>
-<input type="text" value={name} name="value" onChange={(e)=>{setName(e.target.value)}} placeholder="Produto"/>
-<input type="number" value={price} name="price" onChange={(e)=>{setPrice(e.target.value)}} placeholder="Preço"/>
-{loading && <input type="submit" value="Aguarde" disabled="disabled"/>}
-{!loading && <input type="submit" value="Adicionar"/>}
-
-</form>
-
-</div>
 
 
 

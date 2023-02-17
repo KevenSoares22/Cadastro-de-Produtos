@@ -18,7 +18,6 @@ import Product from './pages/Product'
 import NavBar from './components/NavBar'
 
 
-
 //CSS
 import './App.css';
 
